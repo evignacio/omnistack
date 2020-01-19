@@ -37,6 +37,14 @@ li.dev-item header img {
     margin-right: 2%;
 }
 
+li.dev-item .button-exit{
+    font-size: 18px;
+    color: darkgrey;
+    margin: 0%;
+    margin-left: 96%;
+    text-transform: uppercase;
+}
+
 li.div-item header .user-info {
     margin-left: 10px;
 }

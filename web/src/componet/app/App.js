@@ -63,6 +63,11 @@ function App() {
     setLongitude('');
   }
 
+  function removeDev(event) {
+    let li = event.target.parentNode;
+    li.remove();
+  }
+
 
   return <div id="app">
     { load && <Loader /> }
@@ -101,7 +106,8 @@ function App() {
           <ul>
             {devs.map( dev => ( 
               <li className="dev-item">
-              <header>
+                <a href="#" class="button-exit" onClick={e => removeDev(e)}>x</a>
+                <header>
                 <img src={dev.avatar_url}/>
                 <div className="user-info">
                   <strong>{dev.name}</strong>
