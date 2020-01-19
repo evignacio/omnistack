@@ -4,6 +4,7 @@ aside {
     box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.02);
     border-radius: 2px;
     padding: 30px 20px;
+    box-shadow:darkgrey 2px 2px;
 }
 
 aside strong {
@@ -51,13 +52,13 @@ aside form button[type=submit] {
     border: 0;
     margin-top: 30px;
     background: #7d40e7;
-    border-radius: 2px;
     padding: 15px 20px;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
     cursor: pointer;
     transition: background 0.5s;
+    border-radius: 2%;
 }
 
 aside form button[type=submit]:hover {

@@ -7,6 +7,9 @@ import './Sidebar.css'
 import './Main.css';
 
 function App() {
+
+  const [devs, setDevs] = useState([]);
+
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [github_username, setGithubUserName] = useState('');
@@ -24,7 +27,16 @@ function App() {
         console.log(error.message);
       }
     )
-  })
+  }, [])
+
+  useEffect(() => {
+    async function loasDevs() {
+      const response = await api.get('/dev');
+      setDevs(response.data);
+      console.log(response.data);
+    }
+    loasDevs();
+  }, []);
 
   async function handleAddDev(event) {
     event.preventDefault();
@@ -40,7 +52,12 @@ function App() {
     } catch(error) {
       alert(error);
     }
+    setGithubUserName('');
+    setTechs('');
+    setLatitude('');
+    setLongitude('');
   }
+
 
   return <div id="app">
     <aside>
@@ -73,55 +90,19 @@ function App() {
     </aside>
     <main>
       <ul>
-
-        <li className="dev-item">
+        {devs.map( dev => ( 
+          <li className="dev-item">
           <header>
-            <img src="https://avatars2.githubusercontent.com/u/39386199?s=460&v=4"/>
+            <img src={dev.avatar_url}/>
             <div className="user-info">
-              <strong>Evandro Ignácio</strong>
-              <span>html, javaScript, Java</span>
+              <strong>{dev.name}</strong>
+              <span>{dev.techs.join(', ')}</span>
             </div>
           </header>
-          <p>O Fabuloso Gerador de Lero-lero v2.0 é capaz de gerar qualquer</p>
-          <a href="https://github.com/evignacio">Acessa perfil no GitHub</a>
+          <p>{dev.bio}</p>
+          <a href={`https://github.com/${dev.github_username}`}>Acessa perfil no GitHub</a>
         </li>
-        
-        <li className="dev-item">
-          <header>
-            <img src="https://avatars2.githubusercontent.com/u/39386199?s=460&v=4"/>
-            <div className="user-info">
-              <strong>Evandro Ignácio</strong>
-              <span>html, javaScript, Java</span>
-            </div>
-          </header>
-          <p>O Fabuloso Gerador de Lero-lero v2.0 é capaz de gerar qualquer</p>
-          <a href="https://github.com/evignacio">Acessa perfil no GitHub</a>
-        </li>
-
-        <li className="dev-item">
-          <header>
-            <img src="https://avatars2.githubusercontent.com/u/39386199?s=460&v=4"/>
-            <div className="user-info">
-              <strong>Evandro Ignácio</strong>
-              <span>html, javaScript, Java</span>
-            </div>
-          </header>
-          <p>O Fabuloso Gerador de Lero-lero v2.0 é capaz de gerar qualquer</p>
-          <a href="https://github.com/evignacio">Acessa perfil no GitHub</a>
-        </li>
-
-        <li className="dev-item">
-          <header>
-            <img src="https://avatars2.githubusercontent.com/u/39386199?s=460&v=4"/>
-            <div className="user-info">
-              <strong>Evandro Ignácio</strong>
-              <span>html, javaScript, Java</span>
-            </div>
-          </header>
-          <p>O Fabuloso Gerador de Lero-lero v2.0 é capaz de gerar qualquer</p>
-          <a href="https://github.com/evignacio">Acessa perfil no GitHub</a>
-        </li>
-
+        ))}
       </ul>
     </main>
   </div>
