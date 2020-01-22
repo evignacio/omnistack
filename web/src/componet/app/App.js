@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../service/api';
 
 import Loader from'../loader/Loader';
+import Modal from '../modal/Modal';
 
 import './App.css'
 import '../../common/css/Global.css';

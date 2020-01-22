@@ -1,0 +1,12 @@
+.modal {
+    width: 260px;
+    height: 200px;
+    background:white;
+    border-radius: 2%;
+    padding:2%;
+    display: grid;
+}
+
+.modal header {
+    background: blue;
+}
